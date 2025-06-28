@@ -1,16 +1,37 @@
 import categories as ctg
 import mainframe as mf
 
-lst = load_list()
-
 def load_list():
 
-    pass
+    # List of dictionarys
+    # Item, quantity + category, priority
+    items = []
+
+    with open('s_list.txt', 'r') as file:
+
+        for line in file:
+
+            if '|' in line:
+
+                item, quantity, category = line.strip().split('|')
+                items.append({
+
+                    'item' : item.strip(),
+                    'quantity' : int(quantity.strip()),
+                    'category' : category.strip()
+                    
+                })
+
+    return items
 
 
 def save_list(lst):
 
-    pass
+    with open('s_list.txt', 'w') as file:
+
+        for entry in lst:
+
+            file.write(f'{entry['item']} | {entry['quantity']} | {entry['category']}\n')
 
 
 def sort_list(lst):
