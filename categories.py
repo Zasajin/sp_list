@@ -75,17 +75,21 @@ def add_category(ctgs):
         print('Category already exists.')
         return
 
-    try:
+    while True:
 
-        new_priority = int(input(
-            'Enter an integer where the category is in your shop according to the list above.'
-            'Existing priorities will be incremented if neccessary.'
-            ).strip())
+        try:
 
-    except ValueError:
+            new_priority = int(input(
+                'Enter an integer where the category is in your shop according to the list above.'
+                'Existing priorities will be incremented if neccessary.'
+                ).strip())
+            
+            break
 
-        print('Priority must be an integer.')
-        return
+        except ValueError:
+
+            print('Priority must be an integer.')
+
     
     if new_priority in ctgs.values():
 
