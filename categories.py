@@ -63,7 +63,39 @@ def save_ctgs(ctgs):
 
 def add_category(ctgs):
 
-    pass
+    for entry, priority in ctgs.items():
+
+        print(f'{priority}. {entry}')
+    
+    print()
+    new_category = input('Enter the name of the new category: ').strip()
+
+    if new_category in ctgs:
+
+        print('Category already exists.')
+        return
+
+    try:
+
+        new_priority = int(input(
+            'Enter an integer where the category is in your shop according to the list above.'
+            'Existing priorities will be incremented if neccessary.'
+            ).strip())
+
+    except ValueError:
+
+        print('Priority must be an integer.')
+        return
+    
+    if new_priority in ctgs.values():
+
+        for key in sorted(ctgs, key=lambda k: ctgs[k], reverse=True):
+
+            if ctgs[key] >= new_priority:
+
+                ctgs[key] += 1
+
+    ctgs[new_category] = new_priority
 
 
 # Make multiple choice
@@ -80,4 +112,6 @@ def sort_ctgs(ctgs):
 
 def show_market(ctgs):
 
-    pass
+    for category, priority in ctgs.items():
+
+        print(f'{priority}. {category}')
